@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		html{font-size: 100px}
+		*{margin:0; padding:0}
+		.getEncrypt p{
+			white-space: normal;
+			word-break: break-all;
+			font-size: 14px;
+			line-height: 14px;
+			margin-bottom: 10px;
+		}
+		.fm-item{
+			height: 1.28rem;
+		}
+
+		/*示范样式*/
+		.keyboard{
+			border: none;
+			color: black;
+			font-size: 0.5rem;
+			line-height: 0.7rem;
+			height: 0.7rem;
+			letter-spacing: 0.03rem;
+			font-weight: 600;
+			font-family: -webkit-body;
+			padding: 0 0.12rem;
+			background-color: #f8f8f8;
+		}
+		.keyboard.active{
+			background-color: lightgrey;
+			color: darkslategray;
+		}
+		body{
+			font-size: 16px;
+		}
+	</style>
+	<link rel="stylesheet" href="./nuui.css"/>
+</head>
+<body>
+
+<div class="container" id="indexedList"></div>
+
+<script src="jquery.js"></script>
+<script src="require.js"></script>
+
+<!--报文-->
+<script src="json.js"></script>
+<script>
+	require(["./nu-indexedList"], function(IndexedList){
+		new IndexedList($('#indexedList'), {
+			data: data
+		});
+	})
+</script>
+</body>
+</html>
