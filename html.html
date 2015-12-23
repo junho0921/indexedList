@@ -37,11 +37,103 @@
 		body{
 			font-size: 16px;
 		}
+		/*indexedList延时*/
+		.nu-ilist-row{
+			line-height: .62rem;
+			padding-left: 0.3rem;
+		}
+		.nu-ilist-row:nth-child(odd) {
+			background: #f8f8f8;
+		}
+		.nu-ilist-row:nth-child(even) {
+			background: floralwhite	;
+
+		}
+		.nu-ilist-row span {
+			margin-right: 0.3rem;
+		}
+		.nu-ilist-section{
+			line-height: 1;
+		}
+		.nu-ilist-title{
+			line-height: 0.6rem;
+			font-size: 0.4rem;
+			background: lightgray;
+			border-top: 3px solid gray;
+			padding-left: 0.06rem;
+		}
+
+		.nu-ilist-indexedCol{
+			position: fixed;
+			right: 0;
+			top: 0;
+			font-size: 0.4rem;
+			list-style-type: none;
+			bottom: 0;
+			width: 10%;
+			text-align: center;
+			background: lightyellow;
+			line-height: 0.5rem;
+			z-index: 999;
+			box-shadow: -0px 0px 16px gray;
+		}
+		.nu-ilist-floatIndexed{
+			position: fixed;
+			left: 0;
+			right: 0;
+			top: 0;
+			font-size: 0.4rem;
+			list-style-type: none;
+			width: 100%;
+			text-align: center;
+			line-height: 1rem;
+		}
+		.nu-ilist-floatIndexed h2{
+			background: lightsalmon;
+			display: inline-block;
+			width: 10%;
+			border: 0.09rem solid dimgray;
+			font-size: 0.8rem;
+			font-weight: 600;
+			opacity: 0.8;
+			margin-top: 1.2rem;
+		}
+		.nu-ilist-indexedCol li{
+			position: relative;
+			transform: translate3D(0, 0 , 0);
+			box-shadow: inset 0 0 6px orange;
+			color:darkslategrey;
+			background: inherit;
+			/*动画效果*/
+			-webkit-transition: transform 0.5s ease;
+			-o-transition: transform 0.5s ease;
+			-moz-transition: transform 0.5s ease;
+			transition: transform 0.5s ease;
+		}
+		.nu-ilist-indexedCol li.active{
+			transform: translate3D(-120px, 0 , 0);
+			background: lightblue;
+			color: darkgoldenrod;
+		}
+
+		/*动画效果*/
+
+		.nu-ilist-indexedCol li.pre,
+		.nu-ilist-indexedCol li.prepre,
+		.nu-ilist-indexedCol li.active + li,
+		.nu-ilist-indexedCol li.active + li + li {
+			height: 0.9rem;
+		}
+		.nu-ilist-indexedCol li.active{height: 1rem; line-height: 1rem; width: 110%; font-size: 1rem}
+		.nu-ilist-indexedCol li.pre {transform: rotate(7deg) translate3D(-80px, 0 , 0);}
+		.nu-ilist-indexedCol li.prepre {transform: rotate(14deg) translate3D(-40px, 0 , 0);}
+		.nu-ilist-indexedCol li.active + li {transform: rotate(-7deg) translate3D(-80px, 0 , 0);}
+		.nu-ilist-indexedCol li.active + li + li {transform: rotate(-14deg) translate3D(-40px, 0 , 0);}
 	</style>
 	<link rel="stylesheet" href="./nuui.css"/>
 </head>
 <body>
-
+<div style="height:200px;"></div>
 <div class="container" id="indexedList"></div>
 
 <script src="jquery.js"></script>
