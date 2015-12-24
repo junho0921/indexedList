@@ -6,38 +6,11 @@
 	<style>
 		html{font-size: 100px}
 		*{margin:0; padding:0}
-		.getEncrypt p{
-			white-space: normal;
-			word-break: break-all;
-			font-size: 14px;
-			line-height: 14px;
-			margin-bottom: 10px;
-		}
-		.fm-item{
-			height: 1.28rem;
-		}
-
-		/*示范样式*/
-		.keyboard{
-			border: none;
-			color: black;
-			font-size: 0.5rem;
-			line-height: 0.7rem;
-			height: 0.7rem;
-			letter-spacing: 0.03rem;
-			font-weight: 600;
-			font-family: -webkit-body;
-			padding: 0 0.12rem;
-			background-color: #f8f8f8;
-		}
-		.keyboard.active{
-			background-color: lightgrey;
-			color: darkslategray;
-		}
 		body{
 			font-size: 16px;
 		}
-		/*indexedList延时*/
+
+		/*indexedList*/
 		.nu-ilist-row{
 			line-height: .62rem;
 			padding-left: 0.3rem;
@@ -47,7 +20,6 @@
 		}
 		.nu-ilist-row:nth-child(even) {
 			background: floralwhite	;
-
 		}
 		.nu-ilist-row span {
 			margin-right: 0.3rem;
@@ -118,54 +90,35 @@
 			transition: all 0.25s ease;
 		}
 
-		.nu-ilist-indexedCol li.active h4{
+		.nu-ilist-indexedCol li.nu-ilist-activeIndexed h4{
 			/*background: lightblue;*/
 			color: darkgoldenrod;
 		}
 
+		/*在拖动时候才有的动画*/
+		.nu-ilist-dragging  li.nu-ilist-activeFormerTwoIndexed h4{transform: translate3D(0, 0 , 3px);}
+		.nu-ilist-dragging  li.nu-ilist-activeFormerOneIndexed h4,
+		.nu-ilist-dragging  li.nu-ilist-activeFormerTwoIndexed + li h4{transform: translate3D(0, 0 , 6px);}
 
-		.nu-ilist-indexedCol li.prepre h4{transform: translate3D(0, 0 , 3px);}
-		.nu-ilist-indexedCol li.pre h4,
-		.nu-ilist-indexedCol li.prepre + li h4{transform: translate3D(0, 0 , 6px);}
+		.nu-ilist-dragging  li.nu-ilist-activeIndexed h4{transform: translate3D(0, 0 , 9px);}
 
-		.nu-ilist-indexedCol li.active h4{transform: translate3D(0, 0 , 9px);}
+		.nu-ilist-dragging  li.nu-ilist-activeIndexed + li h4{transform: translate3D(0, 0 , 6px);}
+		.nu-ilist-dragging  li.nu-ilist-activeIndexed + li + li h4{transform: translate3D(0, 0 , 3px);}
 
-		.nu-ilist-indexedCol li.active + li h4{transform: translate3D(0, 0 , 6px);}
-		.nu-ilist-indexedCol li.active + li + li h4{transform: translate3D(0, 0 , 3px);}
-
-
-
-		.nu-ilist-indexedCol li.prepre h4,
-		.nu-ilist-indexedCol li.pre h4,
-		.nu-ilist-indexedCol li.prepre + li h4,
-		.nu-ilist-indexedCol li.active h4,
-		.nu-ilist-indexedCol li.active + li h4,
-		.nu-ilist-indexedCol li.active + li + li h4{
-			margin: 20px 0 ;
+		/*可以添加margin来调整动画, 会更有放大效果*/
+		.nu-ilist-dragging  li.nu-ilist-activeFormerTwoIndexed h4,
+		.nu-ilist-dragging  li.nu-ilist-activeFormerOneIndexed h4,
+		.nu-ilist-dragging  li.nu-ilist-activeFormerTwoIndexed + li h4,
+		.nu-ilist-dragging  li.nu-ilist-activeIndexed h4,
+		.nu-ilist-dragging  li.nu-ilist-activeIndexed + li h4,
+		.nu-ilist-dragging  li.nu-ilist-activeIndexed + li + li h4{
+			/*margin: 20px 0 ;*/
 		}
-
-
-
-		/*动画效果*/
-
-		/*.nu-ilist-indexedCol li.pre,*/
-		/*.nu-ilist-indexedCol li.prepre + li,*/
-		/*.nu-ilist-indexedCol li.prepre,*/
-		/*.nu-ilist-indexedCol li.active + li,*/
-		/*.nu-ilist-indexedCol li.active + li + li {*/
-			/*height: 0.9rem;*/
-		/*}*/
-
-		/*.nu-ilist-indexedCol li.active{height: 1rem; line-height: 1rem; width: 110%; font-size: 1rem}*/
-
-		/*.nu-ilist-indexedCol li.prepre + li, .nu-ilist-indexedCol li.pre {transform: rotate(7deg) translate3D(-80px, 0 , 0);}*/
-		/*.nu-ilist-indexedCol li.prepre {transform: rotate(14deg) translate3D(-40px, 0 , 0);}*/
-		/*.nu-ilist-indexedCol li.active + li {transform: rotate(-7deg) translate3D(-80px, 0 , 0);}*/
-		/*.nu-ilist-indexedCol li.active + li + li {transform: rotate(-14deg) translate3D(-40px, 0 , 0);}*/
-	</style>
+</style>
 	<link rel="stylesheet" href="./nuui.css"/>
 </head>
 <body>
+
 <div style="height:200px;"></div>
 <div class="container" id="indexedList"></div>
 
