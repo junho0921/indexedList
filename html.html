@@ -130,8 +130,15 @@
 <script>
 	require(["./nu-indexedList"], function(IndexedList){
 		new IndexedList($('#indexedList'), {
-			data: data
-		});
+			data: data, // 联系人信息
+			renderer: function(data, i){ // 内容, 接收参数1数据, 参数2序号
+				return $('<div>').html(
+						'<span>' + data.spell + '</span>' +
+						'<span>' + data.name + '</span>' +
+						'<span>' + data.phone + '</span>'
+				);
+			}
+		})
 	})
 </script>
 </body>
