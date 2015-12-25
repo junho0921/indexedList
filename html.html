@@ -76,45 +76,92 @@
 			perspective-origin: 150% 50%;
 		}
 
-		.nu-ilist-indexedCol li h4{
-			position: relative;
-			/*box-shadow: inset 0 0 6px orange;*/
-			color:darkslategrey;
-			/*background: inherit;*/
-
-			transform: translate3D(0, 0 , 0);
-			/*动画效果*/
-			-webkit-transition: all 0.25s ease;
-			-o-transition: all 0.25s ease;
-			-moz-transition: all 0.25s ease;
-			transition: all 0.25s ease;
-		}
-
 		.nu-ilist-indexedCol li.nu-ilist-activeIndexed h4{
 			/*background: lightblue;*/
 			color: darkgoldenrod;
 		}
 
+		/*动画效果1*/
+
 		/*在拖动时候才有的动画*/
-		.nu-ilist-dragging  li.nu-ilist-activeFormerTwoIndexed h4{transform: translate3D(0, 0 , 3px);}
-		.nu-ilist-dragging  li.nu-ilist-activeFormerOneIndexed h4,
-		.nu-ilist-dragging  li.nu-ilist-activeFormerTwoIndexed + li h4{transform: translate3D(0, 0 , 6px);}
+		.nu-ilist-indexedCol li h4{
+			position: relative;
+			color:darkslategrey;
+			transform: translate3D(0, 0, 0);
+			/*动画效果*/
+			-webkit-transition: all 0.25s ease;
+			-o-transition: all 0.25s ease;
+			-moz-transition: all 0.25s ease;
+			transition: all 0.25s ease;
+			-webkit-transform-style: preserve-3d;
+			-moz-transform-style: preserve-3d;
+			-ms-transform-style: preserve-3d;
+			-o-transform-style: preserve-3d;
+			transform-style: preserve-3d;
+		}
 
-		.nu-ilist-dragging  li.nu-ilist-activeIndexed h4{transform: translate3D(0, 0 , 9px);}
-
-		.nu-ilist-dragging  li.nu-ilist-activeIndexed + li h4{transform: translate3D(0, 0 , 6px);}
-		.nu-ilist-dragging  li.nu-ilist-activeIndexed + li + li h4{transform: translate3D(0, 0 , 3px);}
-
-		/*可以添加margin来调整动画, 会更有放大效果*/
 		.nu-ilist-dragging  li.nu-ilist-activeFormerTwoIndexed h4,
+		.nu-ilist-dragging  li.nu-ilist-activeIndexed + li + li h4 {
+			-webkit-transform: translate3d(0, 0, 3px);
+			-moz-transform: translate3d(0, 0, 3px);
+			-ms-transform: translate3d(0, 0, 3px);
+			-o-transform: translate3d(0, 0, 3px);
+			transform: translate3d(0, 0, 3px);
+		}
+
 		.nu-ilist-dragging  li.nu-ilist-activeFormerOneIndexed h4,
 		.nu-ilist-dragging  li.nu-ilist-activeFormerTwoIndexed + li h4,
-		.nu-ilist-dragging  li.nu-ilist-activeIndexed h4,
-		.nu-ilist-dragging  li.nu-ilist-activeIndexed + li h4,
-		.nu-ilist-dragging  li.nu-ilist-activeIndexed + li + li h4{
-			/*margin: 20px 0 ;*/
+		.nu-ilist-dragging  li.nu-ilist-activeIndexed + li h4 {
+			-webkit-transform: translate3d(0, 0, 6px);
+			-moz-transform: translate3d(0, 0, 6px);
+			-ms-transform: translate3d(0, 0, 6px);
+			-o-transform: translate3d(0, 0, 6px);
+			transform: translate3d(0, 0, 6px);
 		}
-</style>
+
+		.nu-ilist-dragging  li.nu-ilist-activeIndexed h4{
+			-webkit-transform: translate3d(0, 0, 9px);
+			-moz-transform: translate3d(0, 0, 9px);
+			-ms-transform: translate3d(0, 0, 9px);
+			-o-transform: translate3d(0, 0, 9px);
+			transform: translate3d(0, 0, 9px);
+		}
+
+
+		/*动画效果2*/
+
+		/*在拖动时候才有的动画*/
+		/*.nu-ilist-indexedCol li{*/
+			/*background: inherit;*/
+		/*}*/
+		/*.nu-ilist-dragging  li.nu-ilist-activeFormerTwoIndexed h4,*/
+		/*.nu-ilist-dragging  li.nu-ilist-activeIndexed + li + li h4 {*/
+			/*-webkit-transform: translate3d(-30px, 0, 0) scale3D(1.3, 1.3, 1.3);*/
+			/*-moz-transform: translate3d(-30px, 0, 0) scale3D(1.3, 1.3, 1.3);*/
+			/*-ms-transform: translate3d(-30px, 0, 0) scale3D(1.3, 1.3, 1.3);*/
+			/*-o-transform: translate3d(-30px, 0, 0) scale3D(1.3, 1.3, 1.3);*/
+			/*transform: translate3d(-30px, 0, 0) scale3D(1.3, 1.3, 1.3);*/
+		/*}*/
+
+		/*.nu-ilist-dragging  li.nu-ilist-activeFormerOneIndexed h4,*/
+		/*.nu-ilist-dragging  li.nu-ilist-activeFormerTwoIndexed + li h4,*/
+		/*.nu-ilist-dragging  li.nu-ilist-activeIndexed + li h4 {*/
+			/*-webkit-transform: translate3d(-60px, 0, 0) scale3D(1.6, 1.6, 1.6);*/
+			/*-moz-transform: translate3d(-60px, 0, 0) scale3D(1.6, 1.6, 1.6);*/
+			/*-ms-transform: translate3d(-60px, 0, 0) scale3D(1.6, 1.6, 1.6);*/
+			/*-o-transform: translate3d(-60px, 0, 0) scale3D(1.6, 1.6, 1.6);*/
+			/*transform: translate3d(-60px, 0, 0) scale3D(1.6, 1.6, 1.6);*/
+		/*}*/
+
+		/*.nu-ilist-dragging  li.nu-ilist-activeIndexed h4{*/
+			/*-webkit-transform: translate3d(-90px, 0, 0) scale3D(1.9, 1.9, 1.9);*/
+			/*-moz-transform: translate3d(-90px, 0, 0) scale3D(1.9, 1.9, 1.9);*/
+			/*-ms-transform: translate3d(-90px, 0, 0) scale3D(1.9, 1.9, 1.9);*/
+			/*-o-transform: translate3d(-90px, 0, 0) scale3D(1.9, 1.9, 1.9);*/
+			/*transform: translate3d(-90px, 0, 0) scale3D(1.9, 1.9, 1.9);*/
+		/*}*/
+
+	</style>
 	<link rel="stylesheet" href="./nuui.css"/>
 </head>
 <body>
