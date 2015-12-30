@@ -161,6 +161,17 @@
 			/*transform: translate3d(-90px, 0, 0) scale3D(1.9, 1.9, 1.9);*/
 		/*}*/
 
+		/*for nu-refreshPull start*/
+		.nu-refreshPull img{
+			position: absolute;
+			width: 0.6rem;
+			height: 0.6rem;
+			top: -0.6rem;
+
+			left: 3.6rem;
+		}
+
+		/*for nu-refreshPull end*/
 	</style>
 	<link rel="stylesheet" href="./nuui.css"/>
 </head>
@@ -188,5 +199,19 @@
 		})
 	})
 </script>
+
+
+<script>
+	require(["./nu-refreshPull"], function(RefreshPull){
+		new RefreshPull($('#indexedList'), {
+			renderer: function(){
+				return $('<span>').html(
+						'<img src="./img/nuui.png">'
+				);
+			}
+		})
+	})
+</script>
+
 </body>
 </html>
