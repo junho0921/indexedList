@@ -170,34 +170,44 @@
 
 			left: 3.6rem;
 
-			animation-fill-mode : forwards;
-			transition: all 1s linear;
+			transform: rotateZ(0deg);
+
+			/*animation-fill-mode : forwards;*/
+			/*transition: all 1s linear;*/
 		}
 
 		.nu-refreshPull-loading{
-			animation: loadingAnimation 1s infinite linear;
+			animation: loadingAnimation 3s linear infinite;
+			/*animation-iteration-count: infinite;*/
 		}
 		@keyframes loadingAnimation {
 			from {
-				transform: rotateZ(0deg);
+				/*transform: rotateZ(0deg);*/
 			}
 			to {
-				transform: rotateZ(-360deg);
+				transform: rotateZ(0deg);
 			}
 		}
+
+		.nu-refreshPull-reset{
+			/*不循环的动画*/
+			animation: resetAnimation linear;
+			animation-iteration-count: 1;
+			/*animation-fill-mode : backwards;*/
+		}
+		@keyframes resetAnimation {
+			from {
+				/*transform: rotateZ(0deg);*/
+			}
+			to {
+				transform: rotateZ(0deg);
+			}
+		}
+
 
 		.nu-refreshPull-loaded{
 			/*不循环的动画*/
-			animation: loadedAnimation 1s linear;
-		}
-
-		@keyframes loadedAnimation {
-			from {
-				transform: rotateZ(0deg);
-			}
-			to {
-				transform: rotateZ(-360deg);
-			}
+			animation: loadingAnimation 3s linear;
 		}
 
 		/*for nu-refreshPull end*/
@@ -241,7 +251,7 @@
 //						'<img src="./img/nuui.png">'
 //				);
 
-				return $('<img src="./img/iconfont-loading (1).png">');
+				return $('<img src="./img/iconfont-loading.png">');
 			}
 		})
 	})
