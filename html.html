@@ -166,9 +166,38 @@
 			position: absolute;
 			width: 0.6rem;
 			height: 0.6rem;
-			top: -0.6rem;
+			/*top: -0.6rem;*/
 
 			left: 3.6rem;
+
+			animation-fill-mode : forwards;
+			transition: all 1s linear;
+		}
+
+		.nu-refreshPull-loading{
+			animation: loadingAnimation 1s infinite linear;
+		}
+		@keyframes loadingAnimation {
+			from {
+				transform: rotateZ(0deg);
+			}
+			to {
+				transform: rotateZ(-360deg);
+			}
+		}
+
+		.nu-refreshPull-loaded{
+			/*不循环的动画*/
+			animation: loadedAnimation 1s linear;
+		}
+
+		@keyframes loadedAnimation {
+			from {
+				transform: rotateZ(0deg);
+			}
+			to {
+				transform: rotateZ(-360deg);
+			}
 		}
 
 		/*for nu-refreshPull end*/
@@ -177,7 +206,10 @@
 </head>
 <body>
 
-<div style="height:200px;"></div>
+<div style="height:200px; font-size: 40px">
+	<span style="font-size: 40px" class="showText"></span>
+
+</div>
 <div class="container" id="indexedList"></div>
 
 <script src="jquery.js"></script>
@@ -205,9 +237,11 @@
 	require(["./nu-refreshPull"], function(RefreshPull){
 		new RefreshPull($('#indexedList'), {
 			renderer: function(){
-				return $('<span>').html(
-						'<img src="./img/nuui.png">'
-				);
+//				return $('<span>').html(
+//						'<img src="./img/nuui.png">'
+//				);
+
+				return $('<img src="./img/iconfont-loading (1).png">');
 			}
 		})
 	})
