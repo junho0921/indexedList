@@ -249,16 +249,23 @@
 			onDragEnd: function(){
 				setTimeout(function(){
 					xut.hide();
-				}, 3000);
+				}, 2000);
 			},
 			renderer: function(){
 //				return $('<span>').html(
 //						'<img src="./img/nuui.png">'
 //				);
-
 				return $('<img src="./img/iconfont-loading.png">');
 			}
-		})
+		});
+
+		// 进入加载状态
+		xut.load();
+
+		// 定时退出加载状态
+		setTimeout(function(){
+			xut.hide();
+		}, 800);
 	})
 </script>
 
