@@ -245,7 +245,12 @@
 
 <script>
 	require(["./nu-refreshPull"], function(RefreshPull){
-		new RefreshPull($('#indexedList'), {
+		var xut = new RefreshPull($('#indexedList'), {
+			onDragEnd: function(){
+				setTimeout(function(){
+					xut.hide();
+				}, 1000);
+			},
 			renderer: function(){
 //				return $('<span>').html(
 //						'<img src="./img/nuui.png">'
