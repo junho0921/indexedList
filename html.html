@@ -162,52 +162,36 @@
 		/*}*/
 
 		/*for nu-refreshPull start*/
-		.nu-refreshPull img{
+
+		.nu-refreshPull{
 			position: absolute;
+			top:0;
+			left: 3rem;
+		}
+		.nu-refreshPull img{
 			width: 0.6rem;
 			height: 0.6rem;
-			/*top: -0.6rem;*/
-
-			left: 3.6rem;
-
-			transform: rotateZ(0deg);
-
-			/*animation-fill-mode : forwards;*/
-			/*transition: all 1s linear;*/
 		}
 
-		.nu-refreshPull-loading{
-			animation: loadingAnimation linear infinite;
-			/*animation-iteration-count: infinite;*/
-		}
 		@keyframes loadingAnimation {
-			from {
-				/*transform: rotateZ(0deg);*/
-			}
+			from {}
 			to {
+				-webkit-transform: rotateZ(-360deg);
+				-moz-transform: rotateZ(-360deg);
+				-ms-transform: rotateZ(-360deg);
+				-o-transform: rotateZ(-360deg);
 				transform: rotateZ(-360deg);
 			}
 		}
-
-		.nu-refreshPull-reset{
-			/*不循环的动画*/
-			animation: resetAnimation linear;
-			animation-iteration-count: 1;
-			/*animation-fill-mode : backwards;*/
-		}
-		@keyframes resetAnimation {
-			from {
-				/*transform: rotateZ(0deg);*/
-			}
+		@-webkit-keyframes loadingAnimation {
+			from {}
 			to {
-				transform: rotateZ(0deg);
+				-webkit-transform: rotateZ(-360deg);
+				-moz-transform: rotateZ(-360deg);
+				-ms-transform: rotateZ(-360deg);
+				-o-transform: rotateZ(-360deg);
+				transform: rotateZ(-360deg);
 			}
-		}
-
-
-		.nu-refreshPull-loaded{
-			/*不循环的动画*/
-			animation: loadingAnimation 3s linear;
 		}
 
 		/*for nu-refreshPull end*/
