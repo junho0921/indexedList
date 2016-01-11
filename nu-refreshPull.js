@@ -102,13 +102,13 @@
 	* 2, 问毅明使用requestAnimationFrames?
 	* */
 
-	var RefreshPull = module.exports = function($target, config){
+	var RefreshPull = module.exports = function($wrapper, config){
 
 		// 获取环境的设置
 		this._setProps();
 
 		// 基本设置
-		this._basicSetting($target, config);
+		this._basicSetting($wrapper, config);
 
 		// 根据用户的设定来计算icon拖拽时的滚动速度等等
 		this._calcRuns();
@@ -117,7 +117,7 @@
 		this._renderIcon();
 
 		// 给容器绑定开始事件
-		this._$container.on(this._startEvent, this._startEventFunc);
+		this._$wrapper.on(this._startEvent, this._startEventFunc);
 
 		return this;
 	};
@@ -151,7 +151,7 @@
 		 * */
 		_status: 'loaded',
 
-		_basicSetting: function($target, config){
+		_basicSetting: function($wrapper, config){
 			// 绑定方法与本对象
 			this._startEventFunc = $.proxy(this._startEventFunc, this);
 			this._moveEventFunc = $.proxy(this._moveEventFunc, this);
@@ -159,11 +159,11 @@
 
 			this._config = $.extend({}, this._defaultConfig, config);
 
-			this._containerH = $target.css({position: 'relative', overflow:'hidden'}).height();
+			this._containerH = $wrapper.css({position: 'relative', overflow:'hidden'}).height();
 
-			this._$content = $target.find(this._config.containerSelector).wrap('<div>');
+			this._$container = $wrapper.find(this._config.containerSelector).wrap('<div>');
 
-			this._$container = this._$content.parent()
+			this._$wrapper = this._$container.parent()
 				.css({
 					'overflow-y':'scroll', height: this._containerH
 				});
@@ -182,7 +182,7 @@
 
 		_renderIcon: function(){
 			var iconWrapCss = {position: 'absolute', top: 0, 'z-index':999, opacity:0};
-			this._$container
+			this._$wrapper
 				.before(
 				this._$topIconWrap = $('<div class="nu-refreshPull">')
 					.css(iconWrapCss)
@@ -192,7 +192,7 @@
 			);
 
 			if(this._config.enablePullUp) {
-				this._$container.after(
+				this._$wrapper.after(
 					this._$footIconWrap = $('<div class="nu-refreshPull">')
 						.css(iconWrapCss)
 						.append(
@@ -202,7 +202,7 @@
 			}
 			this._iconH = this._$topIconWrap.height();
 		},
-		
+
 		_startEventFunc: function(e){
 			//console.log('touch status = ', this._status);
 			if(this._status !== 'loaded'){return}
@@ -210,8 +210,8 @@
 			this._startY = this._page('y', e);
 
 			// 重新获取尺寸信息
-			this._scrollTop = this._$container.scrollTop();
-			this._contentH = this._$content.outerHeight(true);
+			this._scrollTop = this._$wrapper.scrollTop();
+			this._contentH = this._$container.outerHeight(true);
 			this._footerDragDistance = (this._contentH - this._containerH) - this._scrollTop;
 
 			// 设icon的css过渡都为0
@@ -221,8 +221,8 @@
 				this._setTransition(this._$footIconWrap, 0);}
 
 			// 绑定事件
-			this._$container.on(this._moveEvent, this._moveEventFunc);
-			this._$container.one(this._stopEvent, this._stopEventFunc);
+			this._$wrapper.on(this._moveEvent, this._moveEventFunc);
+			this._$wrapper.one(this._stopEvent, this._stopEventFunc);
 		},
 
 		_moveEventFunc: function(e){
@@ -324,7 +324,7 @@
 		},
 
 		_cleanEvent: function(){
-			this._$container.off(this._moveEvent + " " + this._stopEvent);
+			this._$wrapper.off(this._moveEvent + " " + this._stopEvent);
 		},
 
 		_setIconAnimation: function($obj, name, iterationCount, backwardsDuration){
@@ -516,14 +516,14 @@
 		},
 
 		_clearItems:function(){
-			this._$content.empty();
+			this._$container.empty();
 			this._items = [];
 		},
 
 		_appendItem:function(data){
 			var item = this._config.dataRenderer(data);
 			this._items.push(item);
-			item.appendTo(this._$content);
+			item.appendTo(this._$container);
 		},
 
 		_appendItems:function(datas){
@@ -536,8 +536,8 @@
 		_refresh:function(){
 			// 检测提示语效果
 			if(this._items.length == 0){
-				this._$content.append(
-					this._noDataTipEl = $(this.NO_DATA_HTML).css("height", this._$container.outerHeight(true))
+				this._$container.append(
+					this._noDataTipEl = $(this.NO_DATA_HTML).css("height", this._$wrapper.outerHeight(true))
 				)
 			}else{
 				// 顺利获取数据的状态
