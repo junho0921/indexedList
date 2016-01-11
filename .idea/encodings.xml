@@ -3,5 +3,7 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/json.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nu-indexedList.js" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/nu-refreshPull.js" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>
