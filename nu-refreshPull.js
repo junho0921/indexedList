@@ -159,13 +159,13 @@
 
 			this._config = $.extend({}, this._defaultConfig, config);
 
-			this._containerH = $wrapper.css({position: 'relative', overflow:'hidden'}).height();
+			this._wrapperH = $wrapper.css({position: 'relative', overflow:'hidden'}).height();
 
 			this._$container = $wrapper.find(this._config.containerSelector).wrap('<div>');
 
 			this._$wrapper = this._$container.parent()
 				.css({
-					'overflow-y':'scroll', height: this._containerH
+					'overflow-y':'scroll', height: this._wrapperH
 				});
 		},
 
@@ -181,11 +181,10 @@
 		},
 
 		_renderIcon: function(){
-			var iconWrapCss = {position: 'absolute', top: 0, 'z-index':999, opacity:0};
 			this._$wrapper
 				.before(
 				this._$topIconWrap = $('<div class="nu-refreshPull">')
-					.css(iconWrapCss)
+					.css({position: 'absolute', top: 0, 'z-index':999, opacity:0})
 					.append(
 					this._$topIcon = this._config.renderer()
 				)
@@ -194,7 +193,7 @@
 			if(this._config.enablePullUp) {
 				this._$wrapper.after(
 					this._$footIconWrap = $('<div class="nu-refreshPull">')
-						.css(iconWrapCss)
+						.css({position: 'absolute', bottom: 0, 'z-index':999, opacity:1,top: 'auto'})
 						.append(
 						this._$footIcon = this._config.renderer()
 					)
@@ -211,8 +210,7 @@
 
 			// 重新获取尺寸信息
 			this._scrollTop = this._$wrapper.scrollTop();
-			this._contentH = this._$container.outerHeight(true);
-			this._footerDragDistance = (this._contentH - this._containerH) - this._scrollTop;
+			this._footerDragDistance = (this._$container.outerHeight() - this._wrapperH) - this._scrollTop;
 
 			// 设icon的css过渡都为0
 			if(this._config.enablePullDown) {
@@ -242,7 +240,7 @@
 
 			if(!this._direct){return}
 
-			this._selectFuncIcon(this._direct);
+			this._renderFuncIcon(this._direct);
 
 			this._status = 'dragging';//console.log('dragging');
 
@@ -256,7 +254,7 @@
 			this._setIconPos(iconRunY, this._$funcIconWrap);
 		},
 
-		_selectFuncIcon: function(mode){
+		_renderFuncIcon: function(mode){
 			// 选择当前操作的icon, mode = 1是选择顶部icon, 2是选择底部icon, 0是隐藏icon
 			if(mode === 1){
 				this._$funcIcon = this._$topIcon;
@@ -355,11 +353,12 @@
 			}
 
 			// 这里的判断提供了本方法可以传入第一参数是拖拽距离就可以, 本判断可以处理对应icon的实际变化位置, 方便使用了
-			if($obj == this._$footIconWrap){
-				cssY = this._containerH - distance;
-			}else if($obj == this._$topIconWrap){
+			//if($obj == this._$footIconWrap){
+			//	cssY = this._wrapperH - distance;
+			//}else if($obj == this._$topIconWrap){
 				cssY = distance - this._iconH;
-			} else {return}
+			console.log('cssY', cssY, $obj)
+			//} else {return}
 
 			if(cssY !== this._iconPosY){
 				this._iconPosY = cssY;//console.log(cssY);
@@ -476,7 +475,7 @@
 
 				_this._setIconPos(0, _this._$funcIconWrap);
 
-				_this._selectFuncIcon(0);
+				_this._renderFuncIcon(0);
 
 				_this._toLoad = false;
 
@@ -556,7 +555,7 @@
 		 * @instance
 		 */
 		triggerRefresh:function(){
-			this._selectFuncIcon(1);
+			this._renderFuncIcon(1);
 			this._status = 'load';
 			this._setIconRun();
 			this._refreshData();
